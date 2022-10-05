@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block menu %}
+    <li> 
+        <a href="{% url 'article_add' %}">Article add</a>
+    </li>
+{% endblock %}
+
+{% block content%}
+    <h1>Articles</h1>
+        {% include 'partial/partial.html' with text='HELLO WORLD' %}
+    {% for article in articles %}
+        <h2>Title - {{ article.title }}</h2>
+        <p>Author - {{ article.author }}</p>
+        <p>Created date - {{ article.created_at }}</p>
+        <p><a href="{% url 'article_detail' article.pk %}">Подробнее</a></p>
+        <p><a href="{% url 'article_update' article.pk %}">Редактировать</a></p>
+        <p><a href="{% url 'article_delete' article.pk %}">Удалить</a></p>
+    {% endfor %}
+{% endblock %}
